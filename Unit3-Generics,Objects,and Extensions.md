@@ -102,3 +102,6 @@ fun main() {
 <ul>
 <li>4. Run your code to make sure everything works. You should now have three instances of the Question class—each with different data types for the answer—instead of three different classes, or instead of using inheritance. If you want to handle questions with a different answer type, you can reuse the same Question class.</li>
 </ul>
+
+
+<h1>3. Use an Enum Class.</h1>
