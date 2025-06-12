@@ -1,4 +1,4 @@
-<h1>⭐Introduction</h1>
+<h1>⭐1. Introduction</h1>
 This codelab exposes you to several Kotlin concepts that help you structure larger apps:
 <ul>
   <li>1. Generics</li>
@@ -21,7 +21,7 @@ This codelab exposes you to several Kotlin concepts that help you structure larg
 
 ---
 
-<h1>⭐Make a reasonable class with generics.</h1>
+<h1>⭐2. Make a reasonable class with generics.</h1>
 <ul>
   <p>🌟Let's say you are planning a Quizz App which invoves following Questions.</p>
   <li>Fill-in-the-blank question: The answer is a word represented by a <code>String</code>.</li>
@@ -104,4 +104,4 @@ fun main() {
 </ul>
 
 
-<h1>3. Use an Enum Class.</h1>
+<h1>⭐3. Use an Enum Class.</h1>
