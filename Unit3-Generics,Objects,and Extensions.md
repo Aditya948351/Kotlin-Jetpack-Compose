@@ -14,3 +14,15 @@ This codelab exposes you to several Kotlin concepts that help you structure larg
 <li>How to use scope functions to access class properties and methods.</li>
 <li>How to define singleton objects and companion objects for a class.</li>
 <li>How to extend existing classes with new properties and methods.</li>
+
+---
+
+<h2>Make a reasonable class with generics.</h2>
+<ul>
+  <p>Let's say you are planning a Quizz App which invoves following Questions.</p>
+  <li>Fill-in-the-blank question: The answer is a word represented by a <code>String</code>.</li>
+  <li>True or false question: The answer is represented by a <code>Boolean</code>.</li>
+  <li>Math problems: The answer is a numeric value. The answer for a simple arithmetic problem is represented by an <code>Int</code>.</li>
+
+</ul>
+
