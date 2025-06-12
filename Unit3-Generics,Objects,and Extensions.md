@@ -23,6 +23,9 @@ This codelab exposes you to several Kotlin concepts that help you structure larg
   <li>Fill-in-the-blank question: The answer is a word represented by a <code>String</code>.</li>
   <li>True or false question: The answer is represented by a <code>Boolean</code>.</li>
   <li>Math problems: The answer is a numeric value. The answer for a simple arithmetic problem is represented by an <code>Int</code>.</li>
+  <p>In Addition, Quizz question will also have difficulty rating like in String as 'easy','medium','hard'.</p>
+  <strong>Now,Define classes to represent each type of quiz question:</strong>
+     
 
 </ul>
 
