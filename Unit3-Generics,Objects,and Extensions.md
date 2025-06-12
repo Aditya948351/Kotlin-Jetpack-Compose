@@ -62,3 +62,41 @@ class NumericQuestion(
 <ul>
   <p><strong>Generic types</strong> let you use a placeholder for a data type. Instead of creating different classes for each data type (like <code>String</code>, <code>Int</code>, or <code>Boolean</code>), you use a single class with a type parameter like <code>&lt;T&gt;</code>.</p>
 </ul>
+
+<h3>📝 Notes</h3>
+<ul> <li>Generics make code reusable and reduce duplication.</li> <li><code>T</code> is the placeholder for any data type (you can also use other letters or names).</li> <li>Data type is decided when the class is instantiated.</li> </ul>
+
+<h3>⚙️ Steps to Refactor Using Generics</h3>
+<ol> <li><strong>Remove</strong> the separate classes: <ul> <li><code>FillInTheBlankQuestion</code></li> <li><code>TrueOrFalseQuestion</code></li> <li><code>NumericQuestion</code></li> </ul> </li> <li><strong>Create</strong> a generic class named <code>Question</code> with a type parameter <code>&lt;T&gt;</code>.</li> <li><strong>Add</strong> properties: <code>questionText: String</code>, <code>answer: T</code>, <code>difficulty: String</code>.</li> <li><strong>Use</strong> the class with different data types when creating objects.</li> </ol>
+
+<strong>Your code will look like this : </strong>
+
+```kotlin
+class Question<T>(
+    val questionText: String,
+    val answer: T,
+    val difficulty: String
+)
+fun main() {
+    println("Hello, world!!!")
+}
+```
+
+<p><strong>Modify the main function as : </strong></p>
+<ul>
+  <code>val instance name = class name &lt; generic datatypes &gt; (parameters) </code>
+</ul>
+
+```kotlin
+class Question<T>(
+    val questionText: String,
+    val answer: T,
+    val difficulty: String
+)
+fun main() {
+    val question1 = Question<String>("Quoth the raven ___", "nevermore", "medium")
+    val question2 = Question<Boolean>("The sky is green. True or false", false, "easy")
+    val question3 = Question<Int>("How many days are there between full moons?", 28, "hard")
+}
+```
+
