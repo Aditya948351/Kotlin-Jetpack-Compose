@@ -107,3 +107,44 @@ fun main() {
 
 
 <h1>⭐3. Use an Enum Class.</h1>
+
+In previous part, we used a String to represent difficulty:
+
+```kotlin
+val difficulty = "medium"
+```
+While this technically works, it has several downsides:
+
+<ul> <li><strong>Prone to typos:</strong> e.g., <code>"medum"</code> instead of <code>"medium"</code></li> <li><strong>Hard to refactor:</strong> Renaming requires global changes</li> <li><strong>No type safety:</strong> Any string can be used mistakenly</li> <li><strong>Maintenance issues:</strong> Becomes unscalable with more levels</li> </ul>
+<h3>💡 Solution: Use Kotlin’s <code>enum class</code></h3>
+Enums are used when a property should be limited to a fixed set of values. They're ideal for improving <strong>type safety</strong>, <strong>readability</strong>, and <strong>maintainability</strong>.
+
+<h3>🧱 Define the <code>enum class</code></h3>
+kotlin
+Copy
+Edit
+enum class Difficulty {
+    EASY, MEDIUM, HARD
+}
+<ul> <li>Constants should be in <strong>UPPERCASE</strong> (Kotlin convention)</li> <li>Use <code>Difficulty.EASY</code>, <code>Difficulty.MEDIUM</code>, etc., to access values</li> </ul>
+<h3>🧩 Update the <code>Question</code> Class</h3>
+Change the difficulty property type from String to Difficulty enum:
+
+```kotlin
+class Question<T>(
+    val questionText: String,
+    val answer: T,
+    val difficulty: Difficulty
+)
+``` 
+<h3>🛠️ Instantiate with Enum Constants</h3>
+Replace string literals with enum constants:
+
+```kotlin
+val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
+val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
+val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
+```
+<h3>✅ Benefits of Using Enum</h3>
+<ul> <li>🔐 <strong>Compile-time validation</strong></li> <li>🛠️ <strong>Easy to rename/refactor</strong></li> <li>🧼 <strong>Cleaner and self-explanatory</strong></li> <li>📈 <strong>Scales well with new difficulty levels</strong></li> </ul>
+💡 <strong>Pro Tip:</strong> Enum classes in Kotlin can also have <em>properties</em> and <em>functions</em>. Perfect for assigning weight or metadata to each level.
