@@ -148,3 +148,56 @@ val question3 = Question<Int>("How many days are there between full moons?", 28,
 <h3>✅ Benefits of Using Enum</h3>
 <ul> <li>🔐 <strong>Compile-time validation</strong></li> <li>🛠️ <strong>Easy to rename/refactor</strong></li> <li>🧼 <strong>Cleaner and self-explanatory</strong></li> <li>📈 <strong>Scales well with new difficulty levels</strong></li> </ul>
 💡 <strong>Pro Tip:</strong> Enum classes in Kotlin can also have <em>properties</em> and <em>functions</em>. Perfect for assigning weight or metadata to each level.
+
+
+<h1>⭐4. Use a Data Class.</h1>
+
+<li><strong>Classes like the Question class, on the other hand, only contain data. They don't have any methods that perform an action. These can be defined as a Data class.</strong></li>
+<li><strong>Defining a class as a data class allows the Kotlin compiler to make certain assumptions, and to automatically implement some methods.</strong></li>
+<ul>
+  <p>Data Class can be defined as :</p>
+  <code>data class Classname</code>
+</ul>
+<h3>Convert <code>Question</code> to a Data class with steps.</h3>
+<ul>
+  <li>1. In <code>main()</code>, print the result of calling <code>toString()</code> on <code>question1</code>.</li>
+  
+  ```kotlin
+  fun main() {
+    val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
+    val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
+    val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
+    println(question1.toString())
+}
+  ```
+  <li>2. Run your code. The output only shows the class name and a unique identifier for the object.</li>
+  <code><strong>Question@37f8bb67</strong></code>
+
+  <li>3. Make <code>Question</code> into a data class using the <code>data</code> keyword.</li>
+  
+  ```kotlin
+``data class Question<T> (
+    val questionText: String,
+    val answer: T,
+    val difficulty: Difficulty
+  )
+  ```
+  <li>4. Now, Run the Code.</li>
+
+  <p>When a class is defined as a data class, the following methods are implemented.<p>
+  <ul>
+    <li>equals()</li>
+    <li>hashCode(): you'll see this method when working with certain collection types</li>
+    <li>toString()</li>
+    <li>componentN(): component1(), component2(), etc.</li>
+    <li>copy()</li>
+  </ul>
+   <h2>Note: A data class needs to have at least one parameter in its constructor, and all constructor parameters must be marked with val or var. A data class also cannot be abstract, open, sealed, or inner.</h2>
+</ul>
+
+
+
+<h1>⭐5. Use a Singleton Set.</h1>
+
+
+
