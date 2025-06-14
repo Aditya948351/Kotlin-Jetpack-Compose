@@ -335,3 +335,83 @@ fun main() {
 <ul> <li>Cleaner and more intuitive syntax</li> <li>No need to clutter original class definitions</li> <li>Ideal for utility-style functionality</li> <li>Helps create readable and scalable UI logic (like Compose's <code>16.dp</code>)</li> </ul>
 
 
+---
+
+<h1>⭐ 7. Rewriting Extension Functions Using Interfaces</h1> <h2>🔁 Why Move from Extensions to Interfaces?</h2> <p>While extension functions and properties are great for **adding features without touching the original class**, they fall short when:</p> <ul> <li>Multiple classes need the same behavior.</li> <li>You want to enforce implementation.</li> <li>You control the class source code and want tighter structure.</li> </ul> <p>In such cases, <strong>interfaces</strong> help you enforce consistency and reuse functionality across unrelated classes—like <code>Quiz</code>, <code>Survey</code>, or <code>RecipeStep</code>—which all might have <em>progress</em>.</p>
+<h2>📦 Define the Interface</h2> <p>We’ll create a contract interface named <strong>ProgressPrintable</strong> for any class that needs to print a progress bar.</p>
+
+```kotlin
+interface ProgressPrintable {
+    val progressText: String
+    fun printProgressBar()
+}
+```
+<h2>🧩 Update the <code>Quiz</code> Class</h2> <p>Now, let’s make <code>Quiz</code> implement this interface.</p>
+
+```kotlin
+class Quiz : ProgressPrintable {
+    val question1 = Question("Quoth the raven ___", "nevermore", Difficulty.EASY)
+    val question2 = Question("The sky is green. True or false", false, Difficulty.MEDIUM)
+    val question3 = Question("How many days are there between full moons?", 28, Difficulty.HARD)
+    var total: Int = 10
+    var answered: Int = 3
+
+    override val progressText: String
+        get() = "$answered of $total answered"
+
+    override fun printProgressBar() {
+        repeat(answered) { print("▓") }
+        repeat(total - answered) { print("▒") }
+        println()
+        println(progressText)
+    }
+}
+```
+<h3>🧹 Clean Up Old Code</h3> <p>✅ Remove the following since logic now lives inside the class:</p> <ul> <li><code>val Quiz.StudentProgress.progressText</code> (extension property)</li> <li><code>fun Quiz.StudentProgress.printProgressBar()</code> (extension function)</li> </ul>
+<h2>🧪 Testing with <code>main()</code></h2>
+
+```kotlin
+fun main() {
+    Quiz().printProgressBar()
+}
+```
+<h3>📤 Output:</h3> <blockquote> <p>▓▓▓▒▒▒▒▒▒▒</p> <p>3 of 10 answered</p> </blockquote>
+<h2>🔍 Why Interfaces Matter</h2> <p><strong>Interfaces provide structure and flexibility.</strong> Here’s how:</p> <ul> <li><strong>Code reuse</strong> without inheritance</li> <li><strong>Cleaner separation</strong> of concerns</li> <li><strong>Scalability</strong> across unrelated data types</li> <li><strong>Mocking and testing</strong> via dependency injection</li> </ul>
+<h2>🏁 Final Code Summary</h2>
+
+```kotlin
+data class Question<T>(
+    val questionText: String,
+    val answer: T,
+    val difficulty: Difficulty
+)
+
+enum class Difficulty {
+    EASY, MEDIUM, HARD
+}
+
+interface ProgressPrintable {
+    val progressText: String
+    fun printProgressBar()
+}
+class Quiz : ProgressPrintable {
+    val question1 = Question("Quoth the raven ___", "nevermore", Difficulty.EASY)
+    val question2 = Question("The sky is green. True or false", false, Difficulty.MEDIUM)
+    val question3 = Question("How many days are there between full moons?", 28, Difficulty.HARD)
+    var total: Int = 10
+    var answered: Int = 3
+    override val progressText: String
+        get() = "$answered of $total answered"
+    override fun printProgressBar() {
+        repeat(answered) { print("▓") }
+        repeat(total - answered) { print("▒") }
+        println()
+        println(progressText)
+    }
+}
+fun main() {
+    Quiz().printProgressBar()
+}
+```
+
+<h2>🧠 Future Use Cases</h2> <ul> <li><strong>Dependency Injection</strong>: Interfaces allow for loosely-coupled implementations.</li> <li><strong>Mocking for Testing</strong>: Swap real objects with test doubles.</li> <li><strong>Multiplatform Compose</strong>: Share behavior between Android/Desktop implementations.</li> <li><strong>Composable Design</strong>: Like <code>Modifier</code> in Compose, interfaces power extensibility.</li> </ul>
