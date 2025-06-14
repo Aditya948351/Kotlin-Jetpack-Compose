@@ -199,12 +199,46 @@ val question3 = Question<Int>("How many days are there between full moons?", 28,
 
 <h1>⭐5. Use a Singleton Set and Companion Object.</h1>
 <h2>✅ What is a Singleton?</h2> <p>A <strong>singleton</strong> is a special kind of object that is designed to have only one instance in the system. Kotlin makes creating singleton objects very straightforward using the <code>object</code> keyword.</p> <h3>💼 Use Cases of Singleton:</h3> <ul> <li>Managing <strong>user session or authentication</strong></li> <li>Accessing a <strong>single hardware resource</strong> (e.g., speaker, camera)</li> <li>Storing <strong>shared data</strong> like app-wide stats or settings</li> <li>Fetching/storing data using APIs like <strong>Firebase</strong> or local storage</li> </ul>
-<h2>🛠 How to Define a Singleton Object</h2> <pre><code class="language-kotlin"> object StudentProgress { var total: Int = 10 var answered: Int = 3 } </code></pre> <p>This defines a <code>StudentProgress</code> object with two properties. Since it's an <code>object</code>, only one instance will exist — always.</p>
-<h2>🎯 Accessing Singleton Properties</h2> <p>You don’t need to create an object instance. You simply access its properties like this:</p> <pre><code class="language-kotlin"> fun main() { println("${StudentProgress.answered} of ${StudentProgress.total} answered.") } </code></pre> <h3>✅ Output:</h3> <pre><code> 3 of 10 answered. </code></pre>
-<h2>🔄 Making It More Organized Using <code>companion object</code></h2> <h3>🤔 Why Companion Object?</h3> <p>When the singleton logic is directly related to a class, it makes sense to encapsulate it within that class. This helps in better organization and improves readability. Kotlin supports this via the <strong>companion object</strong>.</p> <h3>👇 Here's how to implement it:</h3> <h4>Step 1: Define a Class</h4> <pre><code class="language-kotlin"> class Quiz { val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM) val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY) val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD) companion object StudentProgress { var total: Int = 10 var answered: Int = 3 } } </code></pre> <h4>Step 2: Access Companion Object Properties</h4> <p>Since <code>StudentProgress</code> is now a companion object of <code>Quiz</code>, you can directly access its properties through the class name.</p> <pre><code class="language-kotlin"> fun main() { println("${Quiz.answered} of ${Quiz.total} answered.") } </code></pre> <h3>✅ Output:</h3> <pre><code> 3 of 10 answered. </code></pre>
-<h2>🔍 Key Differences – <code>object</code> vs <code>companion object</code></h2> <table border="1" cellspacing="0" cellpadding="8"> <tr> <th>Feature</th> <th><code>object</code> (Standalone Singleton)</th> <th><code>companion object</code> (Scoped Singleton)</th> </tr> <tr> <td>Can be used globally</td> <td>✅</td> <td>🚫 (Scoped within the class)</td> </tr> <tr> <td>Accessed via</td> <td>Object name</td> <td>Enclosing class name</td> </tr> <tr> <td>Tied to a class</td> <td>❌ Independent</td> <td>✅ Tied to a class</td> </tr> <tr> <td>Initialization</td> <td>Once only</td> <td>Once per class</td> </tr> </table>
+<h2>🛠 How to Define a Singleton Object</h2> 
+
+```kotlin
+object StudentProgress {
+  var total: Int = 10
+  var answered: Int = 3
+}
+```
+<p>This defines a <code>StudentProgress</code> object with two properties. Since it's an <code>object</code>, only one instance will exist — always.</p>
+<h2>🎯 Accessing Singleton Properties</h2> <p>You don’t need to create an object instance. You simply access its properties like this:</p> 
+
+```kotlin
+fun main() {
+ println("${StudentProgress.answered} of ${StudentProgress.total} answered.")
+}
+```
+<h3>✅ Output:</h3> <pre><code> 3 of 10 answered. </code></pre>
+<h2>🔄 Making It More Organized Using <code>companion object</code></h2> <h3>🤔 Why Companion Object?</h3> <p>When the singleton logic is directly related to a class, it makes sense to encapsulate it within that class. This helps in better organization and improves readability. Kotlin supports this via the <strong>companion object</strong>.</p> <h3>👇 Here's how to implement it:</h3> <h4>Step 1: Define a Class</h4> 
+
+```kotlin
+class Quiz {
+  val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
+  val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
+  val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
+  companion object StudentProgress {
+    var total: Int = 10
+    var answered: Int = 3
+  }
+}
+```
+<h4>Step 2: Access Companion Object Properties</h4> <p>Since <code>StudentProgress</code> is now a companion object of <code>Quiz</code>, you can directly access its properties through the class name.</p>
+
+```kotlin
+fun main() {
+  println("${Quiz.answered} of ${Quiz.total} answered.")
+}
+```
+<h3>✅ Output:</h3> <pre><code> 3 of 10 answered. </code></pre>
 <h2>✅ Best Practices</h2> <ul> <li>Use <strong><code>object</code></strong> when you need a truly global singleton (e.g., logging, analytics, network manager).</li> <li>Use <strong><code>companion object</code></strong> when you want class-related static behavior (e.g., constants, factories).</li> </ul>
-<h2>📌 Final Thoughts</h2> <p>Understanding the concept of <strong>singleton</strong> and <strong>companion object</strong> in Kotlin helps you write efficient, bug-free, and maintainable code. These constructs are widely used in real-world Android development and system-level architecture.</p> <blockquote> 💡 As you build larger apps — like <strong>Code Brahma</strong> or <strong>Discipline Hub</strong> — Singleton patterns become indispensable for managing shared state, such as logged-in user sessions, global settings, or network clients. </blockquote>
+<h2>📌 Final Thoughts</h2> <p>Understanding the concept of <strong>singleton</strong> and <strong>companion object</strong> in Kotlin helps you write efficient, bug-free, and maintainable code. These constructs are widely used in real-world Android development and system-level architecture.</p>
 
 
 
