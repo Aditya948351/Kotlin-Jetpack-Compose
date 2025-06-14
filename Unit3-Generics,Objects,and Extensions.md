@@ -242,3 +242,93 @@ fun main() {
 
 
 
+<h1>⭐6. Extending Classes with New Properties and Methods</h1>
+<h2>💡 Why Extend Classes?</h2>
+<p>When building Android apps using Jetpack Compose, you often encounter expressions like <code>16.dp</code> or <code>12.sp</code>. These aren't native properties of numbers—they're **extension properties** added to Kotlin's numeric types.</p> <p>This approach allows developers to add meaningful, readable functionality to existing types—without modifying their source code.</p>
+<h2>📌 What Are Extension Properties?</h2>
+<p><strong>Extension properties</strong> allow you to add custom properties to existing classes. They’re especially useful when working with SDK classes you can’t edit directly. However, keep in mind:</p> <ul> <li>They are read-only (must use <code>get()</code>).</li> <li>They cannot store state.</li> </ul>
+<h3>🧪 Example: StudentProgress Extension Property</h3>
+<p>Let’s say we have a singleton object inside a class that tracks a student’s quiz progress. We want to add a human-readable text for the progress.</p>
+kotlin
+Copy
+Edit
+val Quiz.StudentProgress.progressText: String
+    get() = "$answered of $total answered"
+<h2>🛠 Accessing the Extension Property</h2>
+<p>Since <code>StudentProgress</code> is a <code>companion object</code> inside the <code>Quiz</code> class, we can access this property like this:</p>
+
+```kotlin
+fun main() {
+    println(Quiz.progressText)
+}
+```
+
+<h3>Output : </h3>
+<blockquote>
+<p>▓▓▓▒▒▒▒▒▒▒</p>
+<p>3 of 10 answered</p>
+</blockquote>
+<h2>🔧 Extension Function Example</h2>
+<p>Let's define a <strong>retro-style text progress bar</strong> using an extension function on <code>StudentProgress</code>.</p>
+<h3>📄 Full Extension Function Code</h3>
+
+```kotlin
+
+fun Quiz.StudentProgress.printProgressBar() {
+    repeat(answered) { print("▓") }                       // Dark bar for answered questions
+    repeat(total - answered) { print("▒") }               // Light bar for remaining questions
+    println()
+    println(progressText)                                 // Using our extension property
+}
+```
+
+<h2>🏁 Final Code</h2>
+
+```kotlin
+data class Question<T>(
+    val questionText: String,
+    val answer: T,
+    val difficulty: Difficulty
+)
+
+enum class Difficulty {
+    EASY, MEDIUM, HARD
+}
+
+class Quiz {
+    val question1 = Question("Quoth the raven ___", "nevermore", Difficulty.EASY)
+    val question2 = Question("The sky is green. True or false", false, Difficulty.MEDIUM)
+    val question3 = Question("How many days are there between full moons?", 28, Difficulty.HARD)
+
+    companion object StudentProgress {
+        var total: Int = 10
+        var answered: Int = 3
+    }
+}
+
+// Extension property
+val Quiz.StudentProgress.progressText: String
+    get() = "$answered of $total answered"
+
+// Extension function
+fun Quiz.StudentProgress.printProgressBar() {
+    repeat(answered) { print("▓") }
+    repeat(total - answered) { print("▒") }
+    println()
+    println(progressText)
+}
+
+fun main() {
+    Quiz.printProgressBar()
+}
+```
+
+<h3>Output : </h3>
+<blockquote>
+<p>▓▓▓▒▒▒▒▒▒▒</p>
+<p>3 of 10 answered</p>
+</blockquote>
+<h2>📈 Why Use Extensions?</h2>
+<ul> <li>Cleaner and more intuitive syntax</li> <li>No need to clutter original class definitions</li> <li>Ideal for utility-style functionality</li> <li>Helps create readable and scalable UI logic (like Compose's <code>16.dp</code>)</li> </ul>
+
+
