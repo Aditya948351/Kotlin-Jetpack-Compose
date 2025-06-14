@@ -105,6 +105,7 @@ fun main() {
 <li>4. Run your code to make sure everything works. You should now have three instances of the Question class—each with different data types for the answer—instead of three different classes, or instead of using inheritance. If you want to handle questions with a different answer type, you can reuse the same Question class.</li>
 </ul>
 
+---
 
 <h1>⭐3. Use an Enum Class.</h1>
 
@@ -120,12 +121,12 @@ While this technically works, it has several downsides:
 Enums are used when a property should be limited to a fixed set of values. They're ideal for improving <strong>type safety</strong>, <strong>readability</strong>, and <strong>maintainability</strong>.
 
 <h3>🧱 Define the <code>enum class</code></h3>
-kotlin
-Copy
-Edit
+
+```kotlin
 enum class Difficulty {
     EASY, MEDIUM, HARD
 }
+```
 <ul> <li>Constants should be in <strong>UPPERCASE</strong> (Kotlin convention)</li> <li>Use <code>Difficulty.EASY</code>, <code>Difficulty.MEDIUM</code>, etc., to access values</li> </ul>
 <h3>🧩 Update the <code>Question</code> Class</h3>
 Change the difficulty property type from String to Difficulty enum:
@@ -195,7 +196,7 @@ val question3 = Question<Int>("How many days are there between full moons?", 28,
    <h2>Note: A data class needs to have at least one parameter in its constructor, and all constructor parameters must be marked with val or var. A data class also cannot be abstract, open, sealed, or inner.</h2>
 </ul>
 
-
+---
 
 <h1>⭐5. Use a Singleton Set and Companion Object.</h1>
 <h2>✅ What is a Singleton?</h2> <p>A <strong>singleton</strong> is a special kind of object that is designed to have only one instance in the system. Kotlin makes creating singleton objects very straightforward using the <code>object</code> keyword.</p> <h3>💼 Use Cases of Singleton:</h3> <ul> <li>Managing <strong>user session or authentication</strong></li> <li>Accessing a <strong>single hardware resource</strong> (e.g., speaker, camera)</li> <li>Storing <strong>shared data</strong> like app-wide stats or settings</li> <li>Fetching/storing data using APIs like <strong>Firebase</strong> or local storage</li> </ul>
@@ -240,7 +241,7 @@ fun main() {
 <h2>✅ Best Practices</h2> <ul> <li>Use <strong><code>object</code></strong> when you need a truly global singleton (e.g., logging, analytics, network manager).</li> <li>Use <strong><code>companion object</code></strong> when you want class-related static behavior (e.g., constants, factories).</li> </ul>
 <h2>📌 Final Thoughts</h2> <p>Understanding the concept of <strong>singleton</strong> and <strong>companion object</strong> in Kotlin helps you write efficient, bug-free, and maintainable code. These constructs are widely used in real-world Android development and system-level architecture.</p>
 
-
+---
 
 <h1>⭐6. Extending Classes with New Properties and Methods</h1>
 <h2>💡 Why Extend Classes?</h2>
@@ -249,11 +250,12 @@ fun main() {
 <p><strong>Extension properties</strong> allow you to add custom properties to existing classes. They’re especially useful when working with SDK classes you can’t edit directly. However, keep in mind:</p> <ul> <li>They are read-only (must use <code>get()</code>).</li> <li>They cannot store state.</li> </ul>
 <h3>🧪 Example: StudentProgress Extension Property</h3>
 <p>Let’s say we have a singleton object inside a class that tracks a student’s quiz progress. We want to add a human-readable text for the progress.</p>
-kotlin
-Copy
-Edit
+
+```kotlin
+
 val Quiz.StudentProgress.progressText: String
     get() = "$answered of $total answered"
+```
 <h2>🛠 Accessing the Extension Property</h2>
 <p>Since <code>StudentProgress</code> is a <code>companion object</code> inside the <code>Quiz</code> class, we can access this property like this:</p>
 
