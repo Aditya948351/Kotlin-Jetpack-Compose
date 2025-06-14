@@ -150,6 +150,7 @@ val question3 = Question<Int>("How many days are there between full moons?", 28,
 <ul> <li>🔐 <strong>Compile-time validation</strong></li> <li>🛠️ <strong>Easy to rename/refactor</strong></li> <li>🧼 <strong>Cleaner and self-explanatory</strong></li> <li>📈 <strong>Scales well with new difficulty levels</strong></li> </ul>
 💡 <strong>Pro Tip:</strong> Enum classes in Kotlin can also have <em>properties</em> and <em>functions</em>. Perfect for assigning weight or metadata to each level.
 
+---
 
 <h1>⭐4. Use a Data Class.</h1>
 
