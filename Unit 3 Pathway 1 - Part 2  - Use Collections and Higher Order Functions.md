@@ -1,4 +1,4 @@
-<h1>Use Collections and Ordered Functions</h1>
+<h1>Use Collections and Ordered Functions in Jetpack Compose</h1>
 
 ```kotlin
 /*data class Question<T>(
